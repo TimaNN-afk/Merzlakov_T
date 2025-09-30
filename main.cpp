@@ -38,7 +38,7 @@ int main()
 		std::cout << sumRow << " ";
 		sumRow = 0;
 	}
-	std::cout << "| " << sumAll;
+	std::cout << "|  " << sumAll;
 	
 	return 0;
 }
