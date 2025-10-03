@@ -1,44 +1,98 @@
-//Мерзлякова Тимофея РПО 2
-
-#include <iostream>
-#include <Windows.h>																								
 #include <string>
+#include <Windows.h>
+#include <iostream>
 
+void Completion(int arr[], int size);
+void PrintArr(int arr[], int size);
+void Sorting(int arr[], int size, bool sor);
+bool Sor();
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	srand(time(NULL));
-	
-	const int row = 3, col = 4;
-	int arr[row][col]{};
-	int sumRow{}, sumCol{}, sumAll{};
 
-	for (int i = 0; i < row; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			arr[i][j] = rand() % 10;
-			std::cout << arr[i][j] << "  ";
-			sumCol += arr[i][j];
-		}
+	const int size = 10;
+	int arr[size]{};
 
-		std::cout << "| " << sumCol << std::endl;
-		sumCol = 0;
-	}
-	std::cout << "----------------" << std::endl;
-	for (int i = 0; i < col; i++)
-	{
-		for (int j = 0; j < row; j++)
-		{
-			sumRow += arr[j][i];
-			sumAll += arr[j][i];
-		}
+	Completion(arr, size);
+	PrintArr(arr, size);
+	Sorting(arr, size, Sor());
 
-		std::cout << sumRow << " ";
-		sumRow = 0;
-	}
-	std::cout << "|  " << sumAll;
-	
+
 	return 0;
+}
+
+void Completion(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = rand() % 100;
+	}
+}
+void PrintArr(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
+void Sorting(int arr[], int size, bool sor)
+{
+	bool sort{};
+	int temp = arr[0];
+	if (sor == false)
+	{
+		while (sort) {
+			for (int i = 0; i < size; i++)
+			{
+
+				if (temp > arr[i])
+				{
+					arr[i - 1] = arr[i];
+					arr[i] = temp;
+					temp = arr[i];
+				}
+				else
+				{
+					temp = arr[i];
+				}
+			}
+		}
+		PrintArr(arr, size);
+	}
+	else
+	{
+
+	}
+}
+
+
+bool Sor()
+{
+	int vvod{};
+	while (true)
+	{
+		std::cout << "Введите 1 если сортировать по возрастанию, 2 если по убыванию: ";
+		std::cin >> vvod;
+		if (vvod != 1 && vvod != 2)
+		{
+			std::cout << "Вы ввели неверное значение, введите еще раз.";
+			continue;
+		}
+		else
+		{
+			break;
+		}
+	}
+	if (vvod == 1)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
